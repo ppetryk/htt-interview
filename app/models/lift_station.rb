@@ -4,17 +4,14 @@
 # - a lead float (at fixed height in tank)
 # - an off float (at fixed height in tank)
 class LiftStation < ApplicationRecord
+  include MathCalc
   belongs_to :pump, class_name: 'Pump'
 
-  # TODO: implement method
-  # The total volume of the lift stations tank
   def total_tank_volume
-    raise NotImplementedError, 'This method still needs to be implemented.'
+    cylinder_volume(height, radius)
   end
 
-  # TODO: implement method
-  # The volume of the tank from the height of the off float to the height of the lead float
   def lead_to_off_volume
-    raise NotImplementedError, 'This method still needs to be implemented.'
+    cylinder_volume(lead_to_floor - off_to_floor, radius)
   end
 end

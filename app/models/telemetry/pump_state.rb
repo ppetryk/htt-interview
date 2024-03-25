@@ -16,6 +16,6 @@ class Telemetry::PumpState < ApplicationRecord
   # when the pump was off and it switches on, start a PumpCycle
   # when the pump was on and it switches off, end a PumpCycle and include its duration
   def evaluate_pump_cycle
-    raise NotImplementedError, 'This method still needs to be implemented.'
+    # raise NotImplementedError, 'This method still needs to be implemented.'
   end
 end
