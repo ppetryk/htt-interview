@@ -22,7 +22,7 @@ describe Pump do
         expect(pump.off?).to eq(false)
       end
 
-      it 'returns true when #ff? is called and the pump is on' do
+      it 'returns true when #off? is called and the pump is off' do
         FactoryBot.create :pump_state, pump:, active: false
         expect(pump.off?).to eq(true)
       end

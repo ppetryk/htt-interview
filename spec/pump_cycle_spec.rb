@@ -16,7 +16,7 @@ describe PumpCycle do
       expect(PumpCycle.for_pump(pump).last.ended?).to be_truthy
     end
 
-    it 'sets the correct duration when a pump cycle ends' do
+    it 'sets the correct duration and create lift station cycle when a pump cycle ends' do
       time = Time.now
       FactoryBot.create :pump_state, pump:, active: true, reported_at: (time - 120.seconds)
 
