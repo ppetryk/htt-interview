@@ -4,15 +4,14 @@
 # - a lead float (at fixed height in tank)
 # - an off float (at fixed height in tank)
 class LiftStation < ApplicationRecord
-  include MathCalc
   belongs_to :pump, class_name: 'Pump'
   has_many :lift_station_cycles
 
   def total_tank_volume
-    cylinder_volume(height, radius)
+    Shapes::Cylinder.new(radius, height).volume
   end
 
   def lead_to_off_volume
-    cylinder_volume(lead_to_floor - off_to_floor, radius)
+    @lead_to_off_volume ||= Shapes::Cylinder.new(radius, lead_to_floor - off_to_floor).volume
   end
 end
