@@ -6,6 +6,7 @@
 class LiftStation < ApplicationRecord
   include MathCalc
   belongs_to :pump, class_name: 'Pump'
+  has_many :lift_station_cycles
 
   def total_tank_volume
     cylinder_volume(height, radius)

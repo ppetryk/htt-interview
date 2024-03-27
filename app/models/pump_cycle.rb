@@ -6,6 +6,7 @@ class PumpCycle < ApplicationRecord
 
   scope :for_pump, ->(pump) { where(pump:) }
   scope :unfinished, -> { where(duration: nil).where.not(started_at: nil) }
+  scope :recent_finished, ->(pump) { for_pump(pump).where.not(duration: nil).order(id: :desc).limit(2) }
 
   # cycle has completed
   def ended?
@@ -13,8 +14,8 @@ class PumpCycle < ApplicationRecord
   end
 
   # datetime that cycle ended
-  def eneded_at
-    started_at + durations.seconds
+  def ended_at
+    started_at + duration.seconds
   end
 
   # create new LiftStationCycle with estimations
