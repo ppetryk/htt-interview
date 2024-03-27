@@ -8,6 +8,8 @@ class PumpCycle < ApplicationRecord
   scope :unfinished, -> { where(duration: nil).where.not(started_at: nil) }
   scope :recent_finished, ->(pump) { for_pump(pump).where.not(duration: nil).order(id: :desc).limit(2) }
 
+  after_update :calculate_lift_station_cycle, if: :saved_change_to_duration?
+
   # cycle has completed
   def ended?
     duration.present?

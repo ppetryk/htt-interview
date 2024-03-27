@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe LiftStationFlowEstimator do
   describe '#perform' do
-    let(:lift_station) { FactoryBot.create :lift_station, pump: FactoryBot.create(:pump_with_telemetry) }
+    let(:lift_station) { FactoryBot.build :lift_station }
+    let!(:pump) { FactoryBot.create(:pump_with_telemetry, lift_station:) }
 
     it 'should not error' do
       expect { LiftStationFlowEstimator.new(lift_station:).perform }.not_to raise_error
